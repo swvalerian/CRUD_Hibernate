@@ -1,0 +1,9 @@
+INSERT INTO Developers (firstName,lastName) values('Valeriy','Panafidin');
+INSERT INTO Developers (firstName,lastName) values('Fedor','Lapochkin');
+INSERT INTO Developers (firstName,lastName) values('Ildar','Ryazanov');
+INSERT INTO Developers (firstName,lastName) values('Thomas','Anderson');
+INSERT INTO Developers (firstName,lastName) values('Robert','Shekli');
+INSERT INTO Developers (firstName,lastName) values('Anton','Zaharov');
+INSERT INTO Developers (firstName,lastName) values('Sinicin','Dima');
+INSERT INTO Developers (firstName,lastName) values('Aleksey','Sharikov');
+INSERT INTO Developers (firstName,lastName) values('Doctor','Alban');

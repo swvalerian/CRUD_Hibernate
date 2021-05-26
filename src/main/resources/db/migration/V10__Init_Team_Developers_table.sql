@@ -1,0 +1,10 @@
+INSERT INTO Team_Developers (Team_ID, Dev_ID) values (1,3);
+INSERT INTO Team_Developers (Team_ID, Dev_ID) values (1,2);
+INSERT INTO Team_Developers (Team_ID, Dev_ID) values (1,5);
+INSERT INTO Team_Developers (Team_ID, Dev_ID) values (2,2);
+INSERT INTO Team_Developers (Team_ID, Dev_ID) values (2,6);
+INSERT INTO Team_Developers (Team_ID, Dev_ID) values (2,9);
+INSERT INTO Team_Developers (Team_ID, Dev_ID) values (2,8);
+INSERT INTO Team_Developers (Team_ID, Dev_ID) values (2,5);
+INSERT INTO Team_Developers (Team_ID, Dev_ID) values (3,4);
+INSERT INTO Team_Developers (Team_ID, Dev_ID) values (3,2);
