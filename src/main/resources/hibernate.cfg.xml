@@ -1,8 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 
-<!DOCTYPE hibernate-configuration PUBLIC
-        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-
 <hibernate-configuration>
     <session-factory>
         <!-- Database connection settings -->
@@ -27,8 +24,9 @@
         <property name="show_sql">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
-        <!--<property name="hbm2ddl.auto">create</property>
-        <!-- здесь надо будет указать путь и имя классов которые представляют МОДЕЛЬ собственно классы - которые я связываю с таблицами СУБД
-        <mapping class="com.waseem.UserDetails"/>-->
+        <!--<property name="hbm2ddl.auto">create</property> -->
+
+        <mapping class="com.swvalerian.crud.model.Skill"/>
+
     </session-factory>
 </hibernate-configuration>

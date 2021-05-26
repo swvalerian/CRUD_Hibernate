@@ -1,6 +1,7 @@
 package com.swvalerian.crud;
 
 import com.swvalerian.crud.repository.SkillRepo;
+import com.swvalerian.crud.repository.hibernate.HibernateSkillRepositoryImpl;
 import com.swvalerian.crud.repository.jdbc.SkillRepository;
 
 import java.sql.SQLException;
@@ -10,8 +11,11 @@ public class AppRunner {
 
         SkillRepository skillRepo = new SkillRepository();
         System.out.println(skillRepo.getAll() + "\n");
-        System.out.println(skillRepo.getId(5) + "\n");
 
+        HibernateSkillRepositoryImpl HSR = new HibernateSkillRepositoryImpl();
+        System.out.println("\n" + HSR.getAll());
+
+        System.out.println("\n" + HSR.getId(5));
 
         /*JavaIOTeamRepImpl teamRep = new JavaIOTeamRepImpl();
 

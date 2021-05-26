@@ -1,7 +1,15 @@
 package com.swvalerian.crud.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Skills")
 public class Skill {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
+    @Column(name = "skill")
     private String name;
 
     public Skill() {
