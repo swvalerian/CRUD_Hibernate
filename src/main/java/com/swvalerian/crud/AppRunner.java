@@ -1,5 +1,6 @@
 package com.swvalerian.crud;
 
+import com.swvalerian.crud.model.Skill;
 import com.swvalerian.crud.repository.SkillRepo;
 import com.swvalerian.crud.repository.hibernate.HibernateSkillRepositoryImpl;
 import com.swvalerian.crud.repository.jdbc.SkillRepository;
@@ -9,13 +10,27 @@ import java.sql.SQLException;
 public class AppRunner {
     public static void main(String[] args) throws SQLException {
 
-        SkillRepository skillRepo = new SkillRepository();
-        System.out.println(skillRepo.getAll() + "\n");
-
         HibernateSkillRepositoryImpl HSR = new HibernateSkillRepositoryImpl();
-        System.out.println("\n" + HSR.getAll());
+        System.out.println("\n" + "Начальный вид таблицы Skill"  + "\n" + HSR.getAll());
 
-        System.out.println("\n" + HSR.getId(5));
+        Skill skillUpdate = new Skill(6,"JS");
+        HSR.update(skillUpdate);
+
+        HSR.save(new Skill(7,"7lala7"));
+
+        System.out.println("\n" + "Добавили элемент и изменили элемент под номером 6"  + "\n" + HSR.getAll());
+
+        // после каждого запуска тут нужно увеличивать число - иначе будет эксепшн - удаление несуществующего элемента
+        HSR.deleteById(15);
+
+        System.out.println("\n" + "Удалили элимент из таблицы Skill"  + "\n" + HSR.getAll());
+
+        System.out.println("-------------=========================--------------------");
+
+        skillUpdate = new Skill(6,"Basic");
+        HSR.update(skillUpdate);
+
+        System.out.println("\n" + "Update Skill"  + "\n" + HSR.getAll());
 
         /*JavaIOTeamRepImpl teamRep = new JavaIOTeamRepImpl();
 

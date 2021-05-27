@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "Skills")
 public class Skill {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     @Column(name = "skill")
@@ -41,6 +41,6 @@ public class Skill {
         return "Skill{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                '}';
+                '}' + "\n";
     }
 }
