@@ -1,11 +1,22 @@
 package com.swvalerian.crud.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table (name = "Developers")
 public class Developer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     Integer id;
+    @Column(name = "firstName")
     String firstName;
+    @Column(name = "lastName")
     String lastName;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "Developers_Skills",
+            joinColumns =@JoinColumn(name =  "Dev_Skill_Id"))
     List<Skill> skills;
 
     public Developer() {

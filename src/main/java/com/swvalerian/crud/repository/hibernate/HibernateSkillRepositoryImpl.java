@@ -22,12 +22,10 @@ public class HibernateSkillRepositoryImpl implements SkillRepo {
 
         // в запросе указываем класс, работаем с обьектами классов
         Query<Skill> query = session.createQuery("FROM Skill");
-
         List<Skill> skillList = query.list();
 
         transaction.commit();
         session.close();
-
         return skillList;
     }
 
@@ -46,7 +44,6 @@ public class HibernateSkillRepositoryImpl implements SkillRepo {
 
         transaction.commit();
         session.close();
-
         return getAll();
     }
 
@@ -56,11 +53,10 @@ public class HibernateSkillRepositoryImpl implements SkillRepo {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        session.save(skill);
+        Integer id = (Integer) session.save(skill); // получим id вновь созданной записи
 
         transaction.commit();
         session.close();
-
         return skill;
     }
 

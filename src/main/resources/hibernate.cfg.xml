@@ -27,6 +27,8 @@
         <!--<property name="hbm2ddl.auto">create</property> -->
 
         <mapping class="com.swvalerian.crud.model.Skill"/>
+        <mapping class="com.swvalerian.crud.model.Developer"/>
+
 
     </session-factory>
 </hibernate-configuration>

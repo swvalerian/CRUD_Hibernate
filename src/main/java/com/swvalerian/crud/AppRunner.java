@@ -2,6 +2,7 @@ package com.swvalerian.crud;
 
 import com.swvalerian.crud.model.Skill;
 import com.swvalerian.crud.repository.SkillRepo;
+import com.swvalerian.crud.repository.hibernate.HibernateDeveloperRepositoryImpl;
 import com.swvalerian.crud.repository.hibernate.HibernateSkillRepositoryImpl;
 import com.swvalerian.crud.repository.jdbc.SkillRepository;
 
@@ -10,7 +11,12 @@ import java.sql.SQLException;
 public class AppRunner {
     public static void main(String[] args) throws SQLException {
 
-        HibernateSkillRepositoryImpl HSR = new HibernateSkillRepositoryImpl();
+        HibernateDeveloperRepositoryImpl HDR = new HibernateDeveloperRepositoryImpl();
+
+        System.out.printf(HDR.getAll().toString());
+
+        // Тестирование класса HibernateSkillRepositoryImpl из слоя РЕПО - успешно законечно!
+        /*HibernateSkillRepositoryImpl HSR = new HibernateSkillRepositoryImpl();
         System.out.println("\n" + "Начальный вид таблицы Skill"  + "\n" + HSR.getAll());
 
         Skill skillUpdate = new Skill(6,"JS");
@@ -21,7 +27,7 @@ public class AppRunner {
         System.out.println("\n" + "Добавили элемент и изменили элемент под номером 6"  + "\n" + HSR.getAll());
 
         // после каждого запуска тут нужно увеличивать число - иначе будет эксепшн - удаление несуществующего элемента
-        HSR.deleteById(15);
+        HSR.deleteById(17);
 
         System.out.println("\n" + "Удалили элимент из таблицы Skill"  + "\n" + HSR.getAll());
 
@@ -30,7 +36,7 @@ public class AppRunner {
         skillUpdate = new Skill(6,"Basic");
         HSR.update(skillUpdate);
 
-        System.out.println("\n" + "Update Skill"  + "\n" + HSR.getAll());
+        System.out.println("\n" + "Update Skill"  + "\n" + HSR.getAll());*/
 
         /*JavaIOTeamRepImpl teamRep = new JavaIOTeamRepImpl();
 
