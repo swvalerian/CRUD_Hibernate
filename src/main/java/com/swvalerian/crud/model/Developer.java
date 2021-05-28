@@ -14,9 +14,10 @@ public class Developer {
     String firstName;
     @Column(name = "lastName")
     String lastName;
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Developers_Skills",
-            joinColumns =@JoinColumn(name =  "Dev_Skill_Id"))
+            joinColumns =@JoinColumn(name =  "Dev_Skill_Id"),
+            inverseJoinColumns = @JoinColumn(name = "Skill_Id"))
     List<Skill> skills;
 
     public Developer() {
