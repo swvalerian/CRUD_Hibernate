@@ -1,27 +1,24 @@
 package com.swvalerian.crud.repository.hibernate;
 
 import com.swvalerian.crud.model.Developer;
-import com.swvalerian.crud.model.Skill;
 import com.swvalerian.crud.repository.DeveloperRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class HibernateDeveloperRepositoryImpl implements DeveloperRepository {
-    private static SessionFactory sessionFactory;
+    SessionFactory sessionFactory = HibernateSessionInit.getSessionFactory();
 
     @Override
     public List<Developer> getAll() {
-        sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        // в запросе указываем класс, работаем с обьектами классов
-        Query<Developer> query = session.createQuery("FROM Developer");
+        String queryStr = "FROM Developer dev LEFT JOIN FETCH dev.skills";
+        Query<Developer> query = session.createQuery(queryStr);
         List<Developer> developerList = query.list();
 
         transaction.commit();
@@ -31,8 +28,18 @@ public class HibernateDeveloperRepositoryImpl implements DeveloperRepository {
 
     @Override
     public Developer getId(Long id) {
-        return getAll().stream().filter(dev -> dev.getId().equals(id)).findFirst().orElse(null);
-    }
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        String queryStr = "FROM Developer d LEFT JOIN FETCH d.skills WHERE d.id =: idInt";
+        Query<Developer> query = session.createQuery(queryStr);
+        query.setParameter("idInt", id.intValue());
+        Developer dev = query.getSingleResult();
+
+        transaction.commit();
+        session.close();
+        return dev;
+    } //        return getAll().stream().filter(dev -> dev.getId().equals(id.intValue())).findFirst().orElse(null);
 
     @Override
     public List<Developer> update(Developer developer) {
@@ -41,11 +48,25 @@ public class HibernateDeveloperRepositoryImpl implements DeveloperRepository {
 
     @Override
     public Developer save(Developer developer) {
-        return null;
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.save(developer);
+
+        transaction.commit();
+        session.close();
+        return developer;
     }
 
     @Override
-    public void deleteById(Long aLong) {
+    public void deleteById(Long id) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
 
+        Developer developer = session.get(Developer.class, id.intValue());
+        session.delete(developer);
+
+        transaction.commit();
+        session.close();
     }
 }

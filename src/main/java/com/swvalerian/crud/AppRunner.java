@@ -1,19 +1,65 @@
 package com.swvalerian.crud;
 
+import com.swvalerian.crud.model.Developer;
 import com.swvalerian.crud.model.Skill;
-import com.swvalerian.crud.repository.SkillRepo;
 import com.swvalerian.crud.repository.hibernate.HibernateDeveloperRepositoryImpl;
 import com.swvalerian.crud.repository.hibernate.HibernateSkillRepositoryImpl;
-import com.swvalerian.crud.repository.jdbc.SkillRepository;
-
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AppRunner {
     public static void main(String[] args) throws SQLException {
 
         HibernateDeveloperRepositoryImpl HDR = new HibernateDeveloperRepositoryImpl();
-
         System.out.printf(HDR.getAll().toString());
+        System.out.println("=====================!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!===============");
+        Developer developer = HDR.getId(3l);
+
+
+        System.out.printf("\n" + "Данные о девелопере под номером = 3: " + developer.toString());
+
+        System.out.printf("\n" + "===========3==========" + "\n");
+
+        List<Skill> skills = developer.getSkills();
+        skills.stream().forEach(skill -> System.out.println(skill));
+        System.out.println("------------------------");
+        System.out.println("------------------------");
+        System.out.println(HDR.getAll().toString());
+        System.out.println("------------------------");
+        System.out.println("------------------------" + "\n");
+
+        System.out.println("\n" + "после этой строки идет запрос на сохранение в базу, но работает неверно" + "\n");
+        Developer developerSave = new Developer(10,"Aleks","Kopicin", skills);
+        HDR.save(developerSave); // сохраним нового девелопера, ай-ди ставится автоматом инкремент
+        System.out.println("\n" + "------------ нового девелопера сохранили. при этом перезаписался третий номер и все его скилы пропали"+ "\n");
+        System.out.printf(HDR.getAll().toString());
+
+
+
+        System.out.printf("\n" + "===========4==========" + "\n");
+        HibernateSkillRepositoryImpl HSR = new HibernateSkillRepositoryImpl();
+
+        skills = new ArrayList<>();
+        HSR.save(new Skill(8,"Fly"));
+        HSR.save(new Skill(10, "Drink"));
+
+        skills.add(HSR.getId(4));
+        skills.add(HSR.getId(2));
+        skills.add(HSR.getId(5));
+        skills.add(HSR.getId(1));
+
+        developerSave = new Developer(15, "Vasiliy","Alibaba", skills);
+        HDR.save(developerSave);
+
+        developer = HDR.getId(3l);
+        System.out.printf("\n" + "Данные о девелопере под номером = 3: " + developer.toString());
+        System.out.printf("\n" + "Данные о новом девелопере: " + developerSave.toString());
+
+
+//      теперь удалим девелопера!
+        HDR.deleteById(11l);
+        System.out.printf(HDR.getAll().toString()); // выведем список с отсутствующим девелопером
 
         // Тестирование класса HibernateSkillRepositoryImpl из слоя РЕПО - успешно законечно!
         /*HibernateSkillRepositoryImpl HSR = new HibernateSkillRepositoryImpl();

@@ -23,7 +23,6 @@ public class JavaIODevRepImpl implements DeveloperRepository {
                     "join Skills\n" +
                     "on Skills.Id = Developers_Skills.Skill_Id\n" +
                     "order by Developers.Id;";
-            // подготовили запрос
             try (PreparedStatement preparedStatement = connection.prepareStatement(SQL, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
                 // выполняем запрос
                 ResultSet rS = preparedStatement.executeQuery();

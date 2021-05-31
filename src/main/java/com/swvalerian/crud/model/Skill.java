@@ -9,6 +9,7 @@ public class Skill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
     @Column(name = "skill")
     private String name;
 
@@ -16,7 +17,6 @@ public class Skill {
     }
 
     public Skill(Integer id, String name) {
-        this.id = id;
         this.name = name;
     }
 
@@ -38,9 +38,9 @@ public class Skill {
 
     @Override
     public String toString() {
-        return "Skill{" +
+        return  "\n" + "Skill {" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                '}' + "\n";
+                " name='" + name + "'" +
+                "}";
     }
 }

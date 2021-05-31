@@ -14,10 +14,12 @@ public class Developer {
     String firstName;
     @Column(name = "lastName")
     String lastName;
-    @OneToMany(fetch = FetchType.EAGER)
+
+// orphanRemoval = true  что это значит
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "Developers_Skills",
-            joinColumns =@JoinColumn(name =  "Dev_Skill_Id"),
-            inverseJoinColumns = @JoinColumn(name = "Skill_Id"))
+            joinColumns =@JoinColumn(name = "Dev_Skill_Id", referencedColumnName="ID")
+            ,inverseJoinColumns = @JoinColumn(name = "Skill_Id", referencedColumnName="ID"))
     List<Skill> skills;
 
     public Developer() {
@@ -64,12 +66,12 @@ public class Developer {
     @Override
 
     public String toString() {
-        return "Developer{" +
+        return  "\n" + "Developer {" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", skills=" + skills +
-                '}';
+                ", skills: " + skills +
+                '}' + "\n";
     }
 
 }
