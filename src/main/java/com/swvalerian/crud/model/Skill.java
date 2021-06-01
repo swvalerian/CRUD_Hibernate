@@ -1,6 +1,7 @@
 package com.swvalerian.crud.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Skills")
@@ -12,6 +13,12 @@ public class Skill {
 
     @Column(name = "skill")
     private String name;
+
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinTable(name = "Developers_Skills",
+//            joinColumns =@JoinColumn(name = "Skill_Id", referencedColumnName="ID")
+//            ,inverseJoinColumns = @JoinColumn(name = "Dev_Skill_Id", referencedColumnName="ID"))
+//    private Developer developer;
 
     public Skill() {
     }

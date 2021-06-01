@@ -47,15 +47,15 @@ public class HibernateDeveloperRepositoryImpl implements DeveloperRepository {
     }
 
     @Override
-    public Developer save(Developer developer) {
+    public Developer save(Developer dev) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        session.save(developer);
+        session.save(dev);
 
         transaction.commit();
         session.close();
-        return developer;
+        return dev;
     }
 
     @Override
@@ -63,8 +63,8 @@ public class HibernateDeveloperRepositoryImpl implements DeveloperRepository {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        Developer developer = session.get(Developer.class, id.intValue());
-        session.delete(developer);
+        //Developer developer = session.get(Developer.class, id.intValue());
+        session.delete(session.get(Developer.class, id.intValue()));
 
         transaction.commit();
         session.close();

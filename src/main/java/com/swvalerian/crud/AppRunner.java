@@ -21,7 +21,9 @@ public class AppRunner {
 
         System.out.printf("\n" + "===========3==========" + "\n");
 
-        List<Skill> skills = developer.getSkills();
+        List<Skill> skills = new ArrayList<>();
+        skills.addAll(developer.getSkills());
+
         skills.stream().forEach(skill -> System.out.println(skill));
         System.out.println("------------------------");
         System.out.println("------------------------");
@@ -34,8 +36,6 @@ public class AppRunner {
         HDR.save(developerSave); // сохраним нового девелопера, ай-ди ставится автоматом инкремент
         System.out.println("\n" + "------------ нового девелопера сохранили. при этом перезаписался третий номер и все его скилы пропали"+ "\n");
         System.out.printf(HDR.getAll().toString());
-
-
 
         System.out.printf("\n" + "===========4==========" + "\n");
         HibernateSkillRepositoryImpl HSR = new HibernateSkillRepositoryImpl();
@@ -55,7 +55,6 @@ public class AppRunner {
         developer = HDR.getId(3l);
         System.out.printf("\n" + "Данные о девелопере под номером = 3: " + developer.toString());
         System.out.printf("\n" + "Данные о новом девелопере: " + developerSave.toString());
-
 
 //      теперь удалим девелопера!
         HDR.deleteById(11l);
