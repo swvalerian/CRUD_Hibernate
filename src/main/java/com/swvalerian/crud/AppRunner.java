@@ -13,51 +13,46 @@ public class AppRunner {
 
         HibernateDeveloperRepositoryImpl HDR = new HibernateDeveloperRepositoryImpl();
         System.out.printf(HDR.getAll().toString());
-        System.out.println("=====================!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!===============");
+        System.out.println("=====================!!!!!!!!!!!!!!!!!! Вывод всех !!!!!!!!!!!!!!===============");
         Developer developer = HDR.getId(3l);
-
-
         System.out.printf("\n" + "Данные о девелопере под номером = 3: " + developer.toString());
 
-        System.out.printf("\n" + "===========3==========" + "\n");
-
+        // далее проверим метод Save
         List<Skill> skills = new ArrayList<>();
+        // для того, чтоб создать нового девелопера, нужно создать список skills
+        // позаимствуем умения у предыдущего девелопера
         skills.addAll(developer.getSkills());
 
-        skills.stream().forEach(skill -> System.out.println(skill));
-        System.out.println("------------------------");
-        System.out.println("------------------------");
-        System.out.println(HDR.getAll().toString());
-        System.out.println("------------------------");
-        System.out.println("------------------------" + "\n");
-
-        System.out.println("\n" + "после этой строки идет запрос на сохранение в базу, но работает неверно" + "\n");
+        System.out.println("\n" + "после этой строки идет запрос на сохранение в базу" + "\n");
         Developer developerSave = new Developer(10,"Aleks","Kopicin", skills);
         HDR.save(developerSave); // сохраним нового девелопера, ай-ди ставится автоматом инкремент
-        System.out.println("\n" + "------------ нового девелопера сохранили. при этом перезаписался третий номер и все его скилы пропали"+ "\n");
+
+        System.out.println("\n"+"============= Выведем списко всех, где увидим и нового Developer'a =============" + "\n");
         System.out.printf(HDR.getAll().toString());
 
-        System.out.printf("\n" + "===========4==========" + "\n");
+        System.out.printf("\n" + "=========== Далее изменим данные у девелопера под номером 7 ==========" + "\n");
+        // сформируем список умений другим способом, заодно потестим класс HibernateSkillRepositoryImpl
         HibernateSkillRepositoryImpl HSR = new HibernateSkillRepositoryImpl();
-
         skills = new ArrayList<>();
+
         HSR.save(new Skill(8,"Fly"));
         HSR.save(new Skill(10, "Drink"));
 
         skills.add(HSR.getId(4));
         skills.add(HSR.getId(2));
-        skills.add(HSR.getId(5));
-        skills.add(HSR.getId(1));
+        skills.add(HSR.getId(8));
+        skills.add(HSR.getId(7));
 
-        developerSave = new Developer(15, "Vasiliy","Alibaba", skills);
-        HDR.save(developerSave);
+        Developer developerUpdate = new Developer(7, "Vasiliy","Alibaba", skills);
+        HDR.update(developerUpdate);
+        System.out.println("\n" + "Обновленный девпелопер под номером = 7 должен стать таким:" + developerUpdate.toString() + "\n");
+        System.out.println("\n" + "Данные о девелопере под номером = 7 после Update: " + HDR.getId(7l) + "\n");
 
-        developer = HDR.getId(3l);
-        System.out.printf("\n" + "Данные о девелопере под номером = 3: " + developer.toString());
-        System.out.printf("\n" + "Данные о новом девелопере: " + developerSave.toString());
+        // теперь удалим девелопера!
+        System.out.println("===================== Удалим девелопера под номером 4 и выведем список с получившимися изменениями ==========================");
 
-//      теперь удалим девелопера!
-        HDR.deleteById(11l);
+        HDR.deleteById(4l);
+
         System.out.printf(HDR.getAll().toString()); // выведем список с отсутствующим девелопером
 
         // Тестирование класса HibernateSkillRepositoryImpl из слоя РЕПО - успешно законечно!

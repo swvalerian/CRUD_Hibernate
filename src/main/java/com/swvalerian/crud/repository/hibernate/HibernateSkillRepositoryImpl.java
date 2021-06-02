@@ -8,15 +8,13 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HibernateSkillRepositoryImpl implements SkillRepo {
-    private static SessionFactory sessionFactory;
+    SessionFactory sessionFactory = HibernateSessionInit.getSessionFactory();
 
     @Override
     public List<Skill> getAll() {
-        sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
@@ -36,7 +34,6 @@ public class HibernateSkillRepositoryImpl implements SkillRepo {
 
     @Override
     public List<Skill> update(Skill skill) {
-        sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
@@ -49,7 +46,6 @@ public class HibernateSkillRepositoryImpl implements SkillRepo {
 
     @Override
     public Skill save(Skill skill) {
-        sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
@@ -62,7 +58,6 @@ public class HibernateSkillRepositoryImpl implements SkillRepo {
 
     @Override
     public void deleteById(Integer id) {
-        sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 

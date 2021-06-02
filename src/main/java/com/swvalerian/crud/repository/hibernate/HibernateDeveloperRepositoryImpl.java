@@ -39,11 +39,18 @@ public class HibernateDeveloperRepositoryImpl implements DeveloperRepository {
         transaction.commit();
         session.close();
         return dev;
-    } //        return getAll().stream().filter(dev -> dev.getId().equals(id.intValue())).findFirst().orElse(null);
+    }
 
     @Override
-    public List<Developer> update(Developer developer) {
-        return null;
+    public List<Developer> update(Developer dev) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        session.update(dev);
+
+        transaction.commit();
+        session.close();
+        return getAll();
     }
 
     @Override
@@ -63,8 +70,9 @@ public class HibernateDeveloperRepositoryImpl implements DeveloperRepository {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        //Developer developer = session.get(Developer.class, id.intValue());
-        session.delete(session.get(Developer.class, id.intValue()));
+        Developer developer = session.load(Developer.class, id.intValue());
+
+        session.delete(developer);
 
         transaction.commit();
         session.close();
