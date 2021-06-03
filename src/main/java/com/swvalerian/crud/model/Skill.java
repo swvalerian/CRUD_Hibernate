@@ -14,6 +14,9 @@ public class Skill {
     @Column(name = "skill")
     private String name;
 
+    @ManyToMany(mappedBy = "skills")
+    List<Developer> developerList;
+
 //    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 //    @JoinTable(name = "Developers_Skills",
 //            joinColumns =@JoinColumn(name = "Skill_Id", referencedColumnName="ID")

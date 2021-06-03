@@ -15,7 +15,6 @@ public class Developer {
     @Column(name = "lastName")
     String lastName;
 
-// orphanRemoval = true  что это значит
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
     @JoinTable(name = "Developers_Skills",
             joinColumns =@JoinColumn(name = "Dev_Skill_Id", referencedColumnName="ID")
