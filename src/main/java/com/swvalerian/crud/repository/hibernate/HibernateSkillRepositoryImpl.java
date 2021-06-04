@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 import com.swvalerian.crud.model.Skill;
 import com.swvalerian.crud.repository.SkillRepo;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import java.util.List;

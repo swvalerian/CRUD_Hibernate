@@ -1,10 +1,26 @@
 package com.swvalerian.crud.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table (name = "Team")
 public class Team {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
     Integer id;
+
+    @Column(name = "name")
     String name;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @JoinTable(name = "Team_Developers",
+                joinColumns =@JoinColumn(name = "Team_Id", referencedColumnName = "Id"),
+                inverseJoinColumns = @JoinColumn(name = "Dev_Id", referencedColumnName = "Id"))
     List<Developer> developers;
 
     public Team() {

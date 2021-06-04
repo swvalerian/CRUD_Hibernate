@@ -28,6 +28,7 @@
 
         <mapping class="com.swvalerian.crud.model.Skill"/>
         <mapping class="com.swvalerian.crud.model.Developer"/>
+        <mapping class="com.swvalerian.crud.model.Team"/>
 
 
     </session-factory>

@@ -2,14 +2,37 @@ package com.swvalerian.crud;
 
 import com.swvalerian.crud.model.Developer;
 import com.swvalerian.crud.model.Skill;
+import com.swvalerian.crud.model.Team;
 import com.swvalerian.crud.repository.hibernate.HibernateDeveloperRepositoryImpl;
 import com.swvalerian.crud.repository.hibernate.HibernateSkillRepositoryImpl;
+import com.swvalerian.crud.repository.hibernate.HibernateTeamRepositoryImpl;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AppRunner {
     public static void main(String[] args) throws SQLException {
+        //        тест класса
+
+        HibernateTeamRepositoryImpl HTR = new HibernateTeamRepositoryImpl();
+        System.out.println("\n" + "==================== Вывод команды под номером 1 =================" + "\n");
+        System.out.println(HTR.getId(1l));
+
+        System.out.println("\n"+"=====================!!!!!!!!!!!!!!!!!! Вывод всех !!!!!!!!!!!!!!===============" + "\n");
+        System.out.println(HTR.getAll().toString());
+
+//        Team team = HTR.getId(2l);
+//        System.out.printf("\n" + "Данные о команде под номером = 2: " + team.toString());
+
+
+
+
+
+
+        /*
+
+        // тест класса HibernateDeveloperRepositoryImpl
 
         HibernateDeveloperRepositoryImpl HDR = new HibernateDeveloperRepositoryImpl();
         System.out.printf(HDR.getAll().toString());
@@ -54,6 +77,10 @@ public class AppRunner {
         HDR.deleteById(3l);
 
         System.out.printf(HDR.getAll().toString()); // выведем список с отсутствующим девелопером
+
+
+*/
+
 
         // Тестирование класса HibernateSkillRepositoryImpl из слоя РЕПО - успешно законечно!
         /*HibernateSkillRepositoryImpl HSR = new HibernateSkillRepositoryImpl();

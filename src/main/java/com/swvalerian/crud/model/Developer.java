@@ -15,11 +15,14 @@ public class Developer {
     @Column(name = "lastName")
     String lastName;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "Developers_Skills",
-            joinColumns =@JoinColumn(name = "Dev_Skill_Id", referencedColumnName="ID")
-            ,inverseJoinColumns = @JoinColumn(name = "Skill_Id", referencedColumnName="ID"))
+            joinColumns =@JoinColumn(name = "Dev_Skill_Id", referencedColumnName="ID"),
+            inverseJoinColumns = @JoinColumn(name = "Skill_Id", referencedColumnName="ID"))
     List<Skill> skills;
+
+    @ManyToMany(mappedBy = "developers")
+    List<Team> teamList;
 
     public Developer() {
     }
@@ -69,7 +72,6 @@ public class Developer {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", skills: " + skills +
                 '}' + "\n";
     }
 

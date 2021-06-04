@@ -17,7 +17,7 @@ public class HibernateDeveloperRepositoryImpl implements DeveloperRepository {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        String queryStr = "FROM Developer dev LEFT JOIN FETCH dev.skills";
+        String queryStr = "FROM Developer d LEFT JOIN FETCH d.skills";
         Query<Developer> query = session.createQuery(queryStr);
         List<Developer> developerList = query.list();
 
