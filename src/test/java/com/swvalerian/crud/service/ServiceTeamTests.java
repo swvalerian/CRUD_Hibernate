@@ -18,36 +18,42 @@ public class ServiceTeamTests {
     public void shouldGetAllTeam() {
         List<Team> teamListExpected = new ServiceTeam().getAll();
 
-        Mockito.when(serviceTeamMockito.getAll()).thenReturn(new JavaIOTeamRepImpl().getAll());
+        Mockito.when(serviceTeamMockito.getAll()).thenReturn(new ServiceTeam().getAll());
 
         assertEquals(teamListExpected.toString(),serviceTeamMockito.getAll().toString());
     }
 
     @Test
     public void shouldCreateTeam() {
-        List<Developer> developersList = new ServiceDeveloper().getAll();
-        Team teamCreateExpected = new Team(5, "Memory", developersList);
+        Team teamCreateExpected = new Team();
+        teamCreateExpected.setDevelopers(null);
+        teamCreateExpected.setId(5);
+        teamCreateExpected.setName("Memory");
 
-        Mockito.when(serviceTeamMockito.create(5, "Memory")).thenReturn(new Team(5, "Memory", developersList));
-        assertEquals(teamCreateExpected.toString(), serviceTeamMockito.create(5, "Memory").toString());
+        Mockito.when(serviceTeamMockito.create(5, "Memory")).thenReturn(teamCreateExpected);
+        assertEquals(teamCreateExpected, serviceTeamMockito.create(5, "Memory"));
     }
 
     @Test
     public void shouldUpdateTeam() {
-        List<Developer> developersList = new ServiceDeveloper().getAll();
-        Team teamUpdateExpected = new Team(3, "puhska", developersList);
+        Team teamUpdateExpected = new Team();
+        teamUpdateExpected.setName("pushka");
+        teamUpdateExpected.setId(3);
+        teamUpdateExpected.setDevelopers(null);
 
-        Mockito.when(serviceTeamMockito.update(3, "puhska")).thenReturn(new Team(3, "puhska", developersList));
-        assertEquals(teamUpdateExpected.toString(), serviceTeamMockito.update(3, "puhska").toString());
+        Mockito.when(serviceTeamMockito.update(3, "puhska")).thenReturn(teamUpdateExpected);
+        assertEquals(teamUpdateExpected, serviceTeamMockito.update(3, "puhska"));
     }
 
     @Test
     public void shouldReadTeam() {
-        List<Developer> developersList = new ServiceDeveloper().getAll();
-        Team teamReadExpected = new Team(6, "Vesna", developersList);
+        Team teamReadExpected = new Team();
+        teamReadExpected.setId(6);
+        teamReadExpected.setName("Vesna");
+        teamReadExpected.setDevelopers(null);
 
-        Mockito.when(serviceTeamMockito.read(6)).thenReturn(new Team(6, "Vesna", developersList));
-        assertEquals(teamReadExpected.toString(), serviceTeamMockito.read(6).toString());
+        Mockito.when(serviceTeamMockito.read(6)).thenReturn(teamReadExpected);
+        assertEquals(teamReadExpected, serviceTeamMockito.read(6));
     }
 
     @Test

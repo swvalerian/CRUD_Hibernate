@@ -14,17 +14,11 @@ public class ServiceSkillTests {
 
     @Test
     public void shouldReadSkill() {
-        //ожидаемый возврат после запроса
-        String skillReadExpected = "Skill{id=1, name='Delphi'}";
-        //Второй вариант реализации теста: задаем то, что вернет затычка - ой, заглушка )))
         Skill skillActual = new Skill(1, "Delphi");
 
         Mockito.when(serviceSkillMock.read(1)).thenReturn(skillActual);
-        assertEquals(skillReadExpected, serviceSkillMock.read(1).toString());
+        assertEquals(skillActual.toString(), serviceSkillMock.read(1).toString());
 
-        /*// первый вариант
-        Mockito.when(serviceSkillMock.read(1)).thenReturn(serviceSkillTest.read(1));
-        assertEquals(skillReadExpected, serviceSkillMock.read(1).toString());*/
     }
 
     @Test
