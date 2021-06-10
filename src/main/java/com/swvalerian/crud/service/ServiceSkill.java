@@ -2,6 +2,7 @@ package com.swvalerian.crud.service;
 
 import com.swvalerian.crud.controller.ControllerIF;
 import com.swvalerian.crud.model.Skill;
+import com.swvalerian.crud.repository.hibernate.HibernateSkillRepositoryImpl;
 import com.swvalerian.crud.repository.jdbc.SkillRepository;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 public class ServiceSkill implements ControllerIF {
     // измениться эта строка, здесь мы будем работать через HIBERNATE
     // и будет выглядеть так HibernateSkillRepositoryImpl HSR = new HibernateSkillRepositoryImpl();
-    final private SkillRepository skillRepository = new SkillRepository();
+    final private HibernateSkillRepositoryImpl skillRepository = new HibernateSkillRepositoryImpl();
 
     @Override
     public Skill create(Integer id, String name) {

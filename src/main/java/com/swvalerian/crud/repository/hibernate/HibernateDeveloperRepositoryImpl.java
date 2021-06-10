@@ -71,7 +71,6 @@ public class HibernateDeveloperRepositoryImpl implements DeveloperRepository {
         Transaction transaction = session.beginTransaction();
 
         Developer developer = session.load(Developer.class, id.intValue());
-
         session.delete(developer);
 
         transaction.commit();

@@ -1,27 +1,36 @@
 package com.swvalerian.crud.service;
 
 import com.swvalerian.crud.model.Team;
+import com.swvalerian.crud.repository.hibernate.HibernateDeveloperRepositoryImpl;
+import com.swvalerian.crud.repository.hibernate.HibernateTeamRepositoryImpl;
 import com.swvalerian.crud.repository.jdbc.JavaIODevRepImpl;
 import com.swvalerian.crud.repository.jdbc.JavaIOTeamRepImpl;
 
 import java.util.List;
 
 public class ServiceTeam {
-    final private JavaIOTeamRepImpl teamCon = new JavaIOTeamRepImpl();
+    final private HibernateTeamRepositoryImpl teamCon = new HibernateTeamRepositoryImpl();
 
     public Team create(Integer id, String name) {
-        teamCon.save(new Team(id, name, new JavaIODevRepImpl().getAll()));
-        return new Team(id, name, new JavaIODevRepImpl().getAll());
+        Team team = new Team();
+        team.setId(id);
+        team.setName(name);
+
+        teamCon.save(team);
+        return team;
     }
 
     public Team read(Integer id) {
-        System.out.println(teamCon.getId(id.longValue()));
         return teamCon.getId(id.longValue());
     }
 
     public Team update(Integer id, String name) {
-        teamCon.update(new Team(id, name, new JavaIODevRepImpl().getAll()));
-        return new Team(id, name, new JavaIODevRepImpl().getAll());
+        Team team = new Team();
+        team.setId(id);
+        team.setName(name);
+
+        teamCon.update(team);
+        return team;
     }
 
     public void delete(Integer id) {
@@ -29,7 +38,6 @@ public class ServiceTeam {
     }
 
     public List<Team> getAll() {
-        // teamCon.getAll().stream().forEach(s -> System.out.println(s.getId() + " : " +  s.getName()));
         return teamCon.getAll();
     }
 }

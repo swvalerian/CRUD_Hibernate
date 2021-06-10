@@ -1,8 +1,5 @@
 package com.swvalerian.crud.model;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -28,11 +25,11 @@ public class Team {
 
     @Override
     public String toString() {
-        return "Team{" +
+        return "\n Team{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", developers=" + developers +
-                '}';
+                '}' + "\n";
     }
 
     public Integer getId() {

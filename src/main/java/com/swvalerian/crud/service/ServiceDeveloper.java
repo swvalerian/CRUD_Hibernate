@@ -1,6 +1,7 @@
 package com.swvalerian.crud.service;
 
 import com.swvalerian.crud.model.Developer;
+import com.swvalerian.crud.repository.hibernate.HibernateDeveloperRepositoryImpl;
 import com.swvalerian.crud.repository.jdbc.JavaIODevRepImpl;
 import com.swvalerian.crud.repository.jdbc.SkillRepository;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class ServiceDeveloper  {
 
-    final private JavaIODevRepImpl devRep = new JavaIODevRepImpl();
+    final private HibernateDeveloperRepositoryImpl devRep = new HibernateDeveloperRepositoryImpl();
 
     public Developer create(Integer id, String firstName, String lastName) {
         devRep.save(new Developer(id, firstName, lastName, new SkillRepository().getAll()));
@@ -30,7 +31,6 @@ public class ServiceDeveloper  {
     }
 
     public List<Developer> getAll() {
-        // devRep.getAll().stream().forEach(s -> System.out.println(s.getId() + " : " +  s.getFirstName() + ":" +s.getLastName() + "\n"));
         return devRep.getAll();
     }
 }

@@ -1,31 +1,64 @@
 package com.swvalerian.crud;
 
-import com.swvalerian.crud.model.Developer;
-import com.swvalerian.crud.model.Skill;
-import com.swvalerian.crud.model.Team;
-import com.swvalerian.crud.repository.hibernate.HibernateDeveloperRepositoryImpl;
-import com.swvalerian.crud.repository.hibernate.HibernateSkillRepositoryImpl;
-import com.swvalerian.crud.repository.hibernate.HibernateTeamRepositoryImpl;
+import com.swvalerian.crud.view.MainView;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AppRunner {
     public static void main(String[] args) throws SQLException {
-        //        тест класса
+
+        MainView mainView = new MainView();
+
+        mainView.showAll();
+
+
+        /*
+        //        тест класса HibernateTeamRepositoryImpl()
 
         HibernateTeamRepositoryImpl HTR = new HibernateTeamRepositoryImpl();
-        System.out.println("\n" + "==================== Вывод команды под номером 1 =================" + "\n");
-        System.out.println(HTR.getId(1l));
-
-        System.out.println("\n"+"=====================!!!!!!!!!!!!!!!!!! Вывод всех !!!!!!!!!!!!!!===============" + "\n");
+        System.out.println("\n"+"=====================!!!!!!!!!!!!!!!!!! Вывод всех команд !!!!!!!!!!!!!!===============" + "\n");
         System.out.println(HTR.getAll().toString());
 
-//        Team team = HTR.getId(2l);
-//        System.out.printf("\n" + "Данные о команде под номером = 2: " + team.toString());
+        System.out.println("\n"+"=====================!!!!!!!!!!!!!!!!!! Сохраним новую команду !!!!!!!!!!!!!!===============" + "\n");
+        // для этого создадим список девелоперов
+        List<Developer> developerList = new ArrayList<>();
+        developerList.add(new HibernateDeveloperRepositoryImpl().getId(6l));
+        developerList.add(new HibernateDeveloperRepositoryImpl().getId(7l));
+        developerList.add(new HibernateDeveloperRepositoryImpl().getId(8l));
+        // теперь создадим команду
+        Team team = new Team();
+        team.setId(25); // неважно что указать, автозаполнение
+        team.setName("РККА");
+        team.setDevelopers(developerList);
+        // сохраним вновь созданную команду
+        HTR.save(team);
 
+        System.out.println("\n" + "====================!!!!!!!!!!!! Вывод команды под номером 2 !!!!!!!!!!!=================" + "\n");
+        System.out.println(HTR.getId(2l));
 
+        System.out.println("\n"+"=====================!!!!!!!!!!!!!!!!!! Удалим команду 2 !!!!!!!!!!!!!!===============" + "\n");
+        HTR.deleteById(2l);
+
+        // и выведем информацию о составах всех команд
+        System.out.println("\n"+"=====================!!!!!!!!!!!!!!!!!! Вывод всех команд !!!!!!!!!!!!!!===============" + "\n");
+        System.out.println(HTR.getAll().toString());
+
+        // изменим состав команды под номером 4
+        System.out.println("\n"+"=====================!!!!!!!!!!!!!!!!!! Изменим состав команды РККА, а также имя этой команды!!!!!!!!!!!!!!===============" + "\n");
+
+        developerList.clear();
+        developerList.add(new HibernateDeveloperRepositoryImpl().getId(7l));
+        developerList.add(new HibernateDeveloperRepositoryImpl().getId(9l));
+        team.setDevelopers(developerList);
+        team.setName("ГусиЛебеди");
+
+        HTR.update(team);
+
+        System.out.println("\n"+"=====================!!!!!!!!!!!!!!!!!! Вывод всех команд !!!!!!!!!!!!!!===============" + "\n");
+        System.out.println(HTR.getAll().toString());
+
+        // окончание теста класса HibernateTeamRepositoryImpl()
+*/
 
 
 
@@ -50,7 +83,7 @@ public class AppRunner {
         Developer developerSave = new Developer(10,"Aleks","Kopicin", skills);
         HDR.save(developerSave); // сохраним нового девелопера, ай-ди ставится автоматом инкремент
 
-        System.out.println("\n"+"============= Выведем списко всех, где увидим и нового Developer'a =============" + "\n");
+        System.out.println("\n"+"============= Выведем списоe всех, где увидим и нового Developer'a =============" + "\n");
         System.out.printf(HDR.getAll().toString());
 
         System.out.printf("\n" + "=========== Далее изменим данные у девелопера под номером 7 ==========" + "\n");
@@ -78,7 +111,7 @@ public class AppRunner {
 
         System.out.printf(HDR.getAll().toString()); // выведем список с отсутствующим девелопером
 
-
+        // окончание теста класса HibernateDeveloperRepositoryImpl
 */
 
 
