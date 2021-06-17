@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class ServiceDeveloperTests {
     ServiceDeveloper serviceDeveloperTest = new ServiceDeveloper();
     ServiceDeveloper serviceDeveloperMock = Mockito.mock(ServiceDeveloper.class);
+    SkillRepository skillListMock = Mockito.mock(SkillRepository.class);
 
     @Test
     public void shouldGetAllDeveloper() {
@@ -24,7 +25,7 @@ public class ServiceDeveloperTests {
 
     @Test
     public void shouldCreateDeveloper() {
-        List<Skill> skillListTest = new SkillRepository().getAll();
+        List<Skill> skillListTest = skillListMock.getAll();
 
         Developer developerCreateExpected = new Developer(44,"Arkadiy", "Nezabudkin", skillListTest);
 
@@ -36,7 +37,7 @@ public class ServiceDeveloperTests {
 
     @Test
     public void shouldReadDeveloper() {
-        List<Skill> skillListTest = new SkillRepository().getAll();
+        List<Skill> skillListTest = skillListMock.getAll();
         Developer developerReadExpected = new Developer(35,"Aleksey", "Petrov", skillListTest);
 
         Mockito.when(serviceDeveloperMock.read(23l)).thenReturn(new Developer(35,"Aleksey", "Petrov", skillListTest));
@@ -46,7 +47,7 @@ public class ServiceDeveloperTests {
 
     @Test
     public void shouldUpdateDeveloper() {
-        List<Skill> skillListTest = new SkillRepository().getAll();
+        List<Skill> skillListTest = skillListMock.getAll();
         Developer developerUpdateExpected = new Developer(10,"Zina", "Chaikina", skillListTest);
 
         Mockito.when(serviceDeveloperMock.update(10,"Zina", "Chaikina")).thenReturn( new Developer(10,"Zina", "Chaikina", skillListTest));
