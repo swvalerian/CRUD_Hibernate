@@ -16,9 +16,9 @@ public class ServiceDeveloperTests {
 
     @Test
     public void shouldGetAllDeveloper() {
-        List<Developer> developerGetAllExpected = serviceDeveloperTest.getAll();
+        List<Developer> developerGetAllExpected = new ServiceDeveloper().getAll();
 
-        Mockito.when(serviceDeveloperMock.getAll()).thenReturn(serviceDeveloperTest.getAll());
+        Mockito.when(serviceDeveloperMock.getAll()).thenReturn(new ServiceDeveloper().getAll());
         assertEquals(developerGetAllExpected.toString(), serviceDeveloperMock.getAll().toString());
     }
 
